@@ -1,0 +1,21 @@
+meta {
+  name: Workouts
+  type: http
+  seq: 2
+}
+
+get {
+  url: https://api.hevyapp.com/v1/workouts?page=1&pageSize=5
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 1
+  pageSize: 5
+}
+
+headers {
+  accept: application/json
+  api-key: ceec7992-cecb-4c09-8fdd-43210c1bdf5a
+}

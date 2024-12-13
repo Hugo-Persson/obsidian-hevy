@@ -15,7 +15,6 @@ export class HevyAPI {
 			accept: "application/json",
 			"api-key": this.apiKey,
 		};
-		console.log("headers", headers);
 
 		try {
 			const response = await fetch(url, { method: "GET", headers });

@@ -82,16 +82,21 @@ export default class HevyAPIPlugin extends Plugin {
 						);
 						return;
 					}
+					const file = view.file;
+					if (!file) {
+						alert("No file found, please open a markdown file.");
+						return;
+					}
+					const title = file.basename;
+					const [year, month, day] = title.split("-").map(Number);
+					const localDate = new Date(year, month - 1, day); // Note: month is 0-indexed
 
 					const editorInteract = new EditorInteract(view);
 					editorInteract.insertLoadingText();
-					console.log("Creating API instance", this.settings);
 					const api = new HevyAPI(this.settings.apiToken);
-					console.log("Getting workouts for today");
-					const day = new Date("2024-12-12");
-					const start = new Date(day);
+					const start = new Date(localDate);
 					start.setHours(0, 0, 0, 0);
-					const end = new Date(day);
+					const end = new Date(localDate);
 					end.setHours(23, 59, 59, 999);
 					const workouts = await api.fetchWorkoutsForRange(
 						start,
